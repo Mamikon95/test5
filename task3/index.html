@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>Task №4</title>
+</head>
+<body>
+
+<script>
+    function People(name) {
+        this.name = name;
+        this.age = 0;
+    }
+
+    People.prototype.setAge = function(age) {
+        this.age = age;
+    };
+
+    function Poul(name) {
+        this.name = name;
+        this.age = 0;
+    }
+
+    // задаём наследование
+    Poul.prototype = Object.create(People.prototype);
+
+    /*До переопределения*/
+    var person = new Poul('Poul');
+
+    person.setAge(4);
+
+    console.log(person.age);
+    /*!--До переопределения--!*/
+
+
+    //Переопределяем метод setAge и возвращаем значение +5 родительской
+    Poul.prototype.setAge = function(age) {
+        this.age = age + 5;
+    };
+
+    /*После переопределения*/
+    var person = new Poul('Poul');
+
+    person.setAge(4);
+
+    console.log(person.age);
+    /*!--После переопределения--!*/
+
+</script>
+</body>
+</html>
