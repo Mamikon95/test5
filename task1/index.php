@@ -9,9 +9,18 @@ echo Multiplication(7,4);
  * @return integer
  * */
 function Multiplication($number1,$number2) {
-    for($mult = 0; $number1 > 0; $number1--) {
-        $mult += $number2;
+	
+	$mult = 0;
+	
+    for($i = 0; $i < abs($number1); $i++) {
+        $mult += abs($number2);
     };
+	
+	$mult = (number_gmp_sign($number1) != number_gmp_sign($number2)) ? (0 - $mult) : $mult;
 
     return $mult;
+}
+
+function number_gmp_sign($number) {
+    return $number >= 0 ? true : false;
 }
